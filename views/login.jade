@@ -1,0 +1,21 @@
+extends layout
+
+block content
+        .row(style='margin-right:25%;margin-left:25%;')
+            .card.medium
+                h3(align="center" style="padding-top:30px") Login
+                .card-content
+                    form(action='/login', method='post')
+                        .row
+                          .input-field.col.s12
+                            i.material-icons.prefix email
+                            input#icon_prefix.validate(type='text', name='username')
+                            label(for='icon_prefix') Email
+                        .row
+                          .input-field.col.s12
+                            i.material-icons.prefix lock_outline
+                            input#icon_telephone.validate(type='password', name='password')
+                            label(for='icon_telephone') Password
+                        .row(align="center")
+                            button.waves-effect.waves-light.btn(type='submit') Login
+                        

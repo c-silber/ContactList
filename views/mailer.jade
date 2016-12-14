@@ -1,0 +1,46 @@
+extends layout
+
+block content
+    .row(style='margin-right:10%;margin-left:10%;')
+        .card.large
+            h4.flow-text(style="text-align:center; padding-top:30px") Create Contact
+            .card-content
+                .row
+                    form.col.s12(action='/mailer', method='post')
+                        .row
+                          .input-field.col.s2
+                              select(name='title')
+                                option(value='', disabled='', selected='') Choose your title
+                                option(name='Dr.', value='Dr.') Dr.
+                                option(name='Mr.', value='Mr.') Mr.
+                                option(name='Mrs.', value='Mrs.') Mrs.
+                                option(name='Ms.', value='Ms.') Ms.
+                              label Title
+                          .input-field.col.s5
+                            input#firstName(name='firstName', type='text')
+                            label(for='firstName') First Name
+                          .input-field.col.s5
+                            label(for='lastName') Last Name
+                            input#lastName(name='lastName', type='text')
+                        .row
+                          .input-field.col.s5
+                            label(for='street') Street
+                            input#street.form-control(required = '', name='street', type='text')
+                          .input-field.col.s4
+                            label(for='city') City
+                            input#city.form-control(required = '', name='city', type='text')
+                          .input-field.col.s1
+                            label(for='state') State
+                            input#state.form-control(required = '', name='state', type='text')
+                          .input-field.col.s2
+                            label(for='zip') Zip
+                            input#zip.form-control(required = '', name='zip', type='number', pattern='[0-9]{5}')
+                        .row
+                          .input-field.col.s6
+                            label(for='phone') Phone
+                            input#phone.form-control(required = '', name='phone', type='tel')
+                          .input-field.col.s6
+                            label(for='email') Email
+                            input#email.form-control(required = '', name='email', type='email')
+                        .row(align="center")
+                            button.waves-effect.waves-light.btn(type='submit') Submit

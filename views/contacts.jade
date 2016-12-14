@@ -1,0 +1,67 @@
+extends layout
+
+block content
+
+    h4.flow-text(style="text-align:center") Contact List
+    
+    button.waves-effect.waves.btn(style="margin-left:10px") New Contact
+    
+    .row
+      .input-field.col.s6
+        input#search.validate(type='text')
+        label(for='search') Search by Name
+
+      .input-field.col.s6
+        input#searchByAddress.validate(type='text')
+        label(for='searchByAddress') Search by Address
+    
+    table#contacts.responsive-table.bordered.highlight
+      thead
+        tr
+          th
+          th Title
+          th First Name
+          th Last Name
+          th Address
+          th Phone
+          th Email
+          th
+      tbody
+      each contact, i in contactList
+        tr(class='tRow')
+          td(class='edit' id="#{contact.id}")
+            a(href='#')
+                i.fa.fa-pencil.fa-lg(aria-hidden='true')
+          td #{contact.title}
+          td #{contact.firstName}
+          td #{contact.lastName}
+          td(class='geocode #{contact.Geocode.Longitude} #{contact.Geocode.Latitude}') #{contact.Address.Street}, #{contact.Address.City} #{contact.Address.State}, #{contact.Address.Zip}
+          td #{contact.Phone}
+          td #{contact.Email}
+          td(class='delete')
+            a(href="#")
+                i.fa.fa-trash.fa-lg(action='/contacts' method='delete' aria-hidden="true" id='#{contact._id}')
+    #map
+    
+    script(type='text/javascript').
+        var geo = !{place_urls}
+        for (i in geo){
+            // get the coordinates 
+            var lat = geo[i].Geocode.Latitude;
+            var long = geo[i].Geocode.Longitude;
+            var geoLoc = { lat: lat, lng: long };
+
+            marker = new google.maps.Marker({
+                map: map,
+                position: geoLoc,
+                title: geo[i].Address.Street + ", " +
+                geo[i].Address.City + " " +
+                geo[i].Address.State + ", " +
+                geo[i].Address.Zip       
+            });            
+        }
+        
+    
+    
+
+        

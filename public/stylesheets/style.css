@@ -1,0 +1,22 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+.fa-pencil{
+    color:black;
+}
+
+.fa-trash{
+    color:red; 
+}
+
+#map {
+      margin-top:3em;
+      width:100%;
+      height:500px;
+}

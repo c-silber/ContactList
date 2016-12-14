@@ -1,0 +1,20 @@
+nav.blue-grey.darken-3(role='navigation')
+    a#logo-container.brand-logo(href='#', style="padding-left:20px") Contact Manager
+    ul.right.hide-on-med-and-down
+      li
+        a(href='/login') Login
+    ul.right.hide-on-med-and-down
+      li
+        a(href='/mailer') New Contact
+    ul.right.hide-on-med-and-down
+      li
+        a(href='/contacts') Contact List
+
+    ul#nav-mobile.side-nav(style='transform: translateX(-100%);')
+      li
+        a(href='/mailer') New Contact
+    ul#nav-mobile.side-nav(style='transform: translateX(-100%);')
+      li
+        a(href='/contacts') Contact List
+    a.button-collapse(href='#', data-activates='nav-mobile')
+      i.material-icons menu
