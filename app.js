@@ -4,7 +4,6 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
 var schema = require('./models/contacts');
 var userSchema = require('./models/user');
 var mongo = require('mongodb');
@@ -12,12 +11,14 @@ var uri = "mongodb://contacts:collection@ds139448.mlab.com:39448/contacts";
 var mongoose = require('mongoose');
 var passport = require('passport');
 var localStrategy = require('passport-local').Strategy;
+
 var flash = require('connect-flash');
 var session = require('express-session')
 
 mongoose.Promise = global.Promise;
+
 //connection to db
-//'mongodb://localhost/finalProj'
+//local db: 'mongodb://localhost/finalProj'
 mongoose.connect(uri)
     .then(() => console.log('Connected to db'))
     .catch((err) => console.error(err));
@@ -37,13 +38,15 @@ app.set('view engine', 'jade');
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cookieParser());
+
+
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(cookieParser());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(session({ secret: 'cmps369' }));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
-app.use(session({ secret: 'keyboard cat' }))
 
 app.use('/', index);
 app.use('/mailer', mailer);

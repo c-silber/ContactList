@@ -3,8 +3,16 @@ var router = express.Router();
 
 var mongoose = require('mongoose'), contacts = mongoose.model('contacts');
 
+var ensureLoggedIn = function(req, res, next) {
+    if (req.user){
+        next();
+    } else {
+        res.redirect('/login');
+    }
+}
+
 /* GET contacts page */
-router.get('/', function (req, res, next) {
+router.get('/', ensureLoggedIn, function (req, res, next) {
     var db = req.db;
     contacts.find({}, {}, function (e, data) {
         res.render('contacts', 
@@ -47,8 +55,8 @@ router.post('/', function (req, res, next) {
         });
 });
 
+/* DELETE contacts page */
 router.delete('/', function (req, res, next) {
-    console.log(req.body.id);
     contacts.remove({_id: req.body.id}, function (err, records) {
         if (err) {
             console.log("couldn't remove");
