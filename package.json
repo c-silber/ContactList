@@ -14,7 +14,8 @@
     "morgan": "~1.7.0",
     "passport": "^0.3.2",
     "passport-http": "^0.3.0",
-    "serve-favicon": "~2.3.0"
+    "serve-favicon": "~2.3.0",
+    "bcrypt": "latest"
   },
   "description": "simple contact manager",
   "main": "app.js",
