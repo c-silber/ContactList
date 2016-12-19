@@ -8,6 +8,7 @@ var bodyParser = require('body-parser');
 var schema = require('./models/contacts');
 var userSchema = require('./models/user');
 var mongo = require('mongodb');
+var uri = "mongodb://contacts:collection@ds139448.mlab.com:39448/contacts";
 var mongoose = require('mongoose');
 var passport = require('passport');
 var localStrategy = require('passport-local').Strategy;
@@ -16,7 +17,8 @@ var session = require('express-session')
 
 mongoose.Promise = global.Promise;
 //connection to db
-mongoose.connect('mongodb://localhost/finalProj')
+//'mongodb://localhost/finalProj'
+mongoose.connect(uri)
     .then(() => console.log('Connected to db'))
     .catch((err) => console.error(err));
 
@@ -47,6 +49,7 @@ app.use('/', index);
 app.use('/mailer', mailer);
 app.use('/contacts', contacts);
 app.use('/login', login);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

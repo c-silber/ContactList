@@ -4,18 +4,22 @@ var mongoose = require('mongoose'), dbUser = mongoose.model('user');
 var passport = require('passport');
 var localStrategy = require('passport-local').Strategy;
 
+user = {
+    username: "cmps369",
+    password: "finalproject",
+    id: 1
+}
+
 passport.use(new localStrategy(
     function(username, password, done) {
-        dbUser.findOne({ username: username }, function(err, user) {
-      if (err) { return done(err); }
       if (!user) {
         return done(null, false, { message: 'Incorrect username.' });
       }
-      if (!user.validPassword(password)) {
+      if (password !== user.password) {
         return done(null, false, { message: 'Incorrect password.' });
       }
-      return done(null, user);
-    });
+          return done(null, user);
+
   }
 )); 
              

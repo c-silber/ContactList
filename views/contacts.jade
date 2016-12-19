@@ -23,24 +23,32 @@ block content
           th First Name
           th Last Name
           th Address
+          th City
+          th State
+          th Zip
           th Phone
           th Email
           th
       tbody
       each contact, i in contactList
-        tr(class='tRow')
-          td(class='edit' id="#{contact.id}")
-            a(href='#')
-                i.fa.fa-pencil.fa-lg(aria-hidden='true')
+        tr(class='tRow' style='height:5vh')
+          td(class='edit' id='#{contact._id}')
+            a(href="#")
+                i.fa.fa-pencil.fa-lg(aria-hidden='true' id='pen#{contact._id}')
           td #{contact.title}
           td #{contact.firstName}
           td #{contact.lastName}
-          td(class='geocode #{contact.Geocode.Longitude} #{contact.Geocode.Latitude}') #{contact.Address.Street}, #{contact.Address.City} #{contact.Address.State}, #{contact.Address.Zip}
+          td(class='geocode #{contact.Geocode.Longitude} #{contact.Geocode.Latitude}') #{contact.Address.Street}
+          td #{contact.Address.City} 
+          td #{contact.Address.State}
+          td #{contact.Address.Zip}
           td #{contact.Phone}
           td #{contact.Email}
           td(class='delete')
             a(href="#")
                 i.fa.fa-trash.fa-lg(action='/contacts' method='delete' aria-hidden="true" id='#{contact._id}')
+                
+
     #map
     
     script(type='text/javascript').
@@ -58,10 +66,8 @@ block content
                 geo[i].Address.City + " " +
                 geo[i].Address.State + ", " +
                 geo[i].Address.Zip       
-            });            
+            });
         }
-        
-    
-    
+   
 
         
