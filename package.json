@@ -1,5 +1,5 @@
 {
-  "name": "finalproj",
+  "name": "contact_manager",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -15,5 +15,18 @@
     "passport": "^0.3.2",
     "passport-http": "^0.3.0",
     "serve-favicon": "~2.3.0"
-  }
+  },
+  "description": "simple contact manager",
+  "main": "app.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/c-silber/ContactList.git"
+  },
+  "author": "Caroline Silber",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/c-silber/ContactList/issues"
+  },
+  "homepage": "https://github.com/c-silber/ContactList#readme"
 }

@@ -62,13 +62,14 @@ $(document).on('click', '.fa-floppy-o', function () {
         editData.push($(this).val());
         $(this).replaceWith("<td>" + $(this).val() + "</td>");
     });
+    
     editData.push(this.id);
     
     // submit post request to save the data
    $.ajax({
         url: '/contacts',
         type: 'post',
-        data: {data: editData},
+        data: {data: editData, id: this.id},
         success: function (data) {
             console.log("worked");
         }
