@@ -15,7 +15,7 @@
     "passport": "^0.3.2",
     "passport-http": "^0.3.0",
     "serve-favicon": "~2.3.0",
-    "bcrypt": "latest"
+    "bcryptjs": "latest"
   },
   "description": "simple contact manager",
   "main": "app.js",
