@@ -42,5 +42,17 @@ block content
                           .input-field.col.s6
                             label(for='email') Email
                             input#email.form-control(required = '', name='email', type='email')
+                        .row
+                            .input-field.col.s2
+                                label Contact Me By: 
+                            .input-field.col.s3
+                                input#contactPhone(type='checkbox' name='contactPhone')
+                                label(for='contactPhone') Phone
+                            .input-field.col.s3 
+                                input#contactEmail(type='checkbox' name='contactEmail')
+                                label(for='contactEmail') Email
+                            .input-field.col.s3
+                                input#contactMail(type='checkbox')
+                                label(for='contactMail' name='contactMail') Mail
                         .row(align="center")
                             button.waves-effect.waves-light.btn(type='submit') Submit

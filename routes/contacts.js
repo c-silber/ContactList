@@ -23,6 +23,7 @@ router.get('/', ensureLoggedIn, function (req, res, next) {
 
 /* POST contacts page */
 router.post('/', function (req, res, next) {
+    console.log(req.body); 
     var title = req.body.data[0];
     var firstName = req.body.data[1];
     var lastName = req.body.data[2];
@@ -33,19 +34,25 @@ router.post('/', function (req, res, next) {
     var phone = req.body.data[7];
     var email = req.body.data[8];
     var id = req.body.data[9];
+    var cEmail = req.body.data[10];
+    var cPhone = req.body.data[11];
+    var cMail = req.body[12];
 
     contacts.update(
         {_id: id}, 
         {$set: {
-            "title": title,
-            "firstName": firstName,
-            "lastName": lastName,
+            "Title": title,
+            "FirstName": firstName,
+            "LastName": lastName,
             "Address.Street": address,
             "Address.City": city,
             "Address.State": state,
             "Address.Zip": zip,
             "Phone": phone,
             "Email": email,
+            "ContactMethods.Email": cEmail,
+            "ContactMethods.Phone": cPhone,
+            "ContactMethods.Mail": cMail
             }
         }, 
         { upsert:false }, 

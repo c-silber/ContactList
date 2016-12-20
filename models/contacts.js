@@ -3,9 +3,9 @@ var mongoose = require('mongoose');
 
 // Contacts Model
 var contactSchema = new Schema({
-    title: String,
-    firstName: String,
-    lastName: String,
+    Title: String,
+    FirstName: String,
+    LastName: String,
     Address:
         {
             Street: String,
@@ -19,6 +19,12 @@ var contactSchema = new Schema({
     },
     Phone: String,
     Email: String,
+    ContactMethods:
+        {
+            Email: Boolean,
+            Phone: Boolean, 
+            Mail: Boolean
+        }
 });
 
 module.exports = mongoose.model('contacts', contactSchema);

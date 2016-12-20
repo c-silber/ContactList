@@ -28,6 +28,7 @@ block content
           th Zip
           th Phone
           th Email
+          th Contact Methods
           th
       tbody
       each contact, i in contactList
@@ -35,15 +36,33 @@ block content
           td(class='edit' id='#{contact._id}')
             a(href="#")
                 i.fa.fa-pencil.fa-lg(aria-hidden='true' id='pen#{contact._id}')
-          td #{contact.title}
-          td #{contact.firstName}
-          td #{contact.lastName}
+          td #{contact.Title}
+          td #{contact.FirstName}
+          td #{contact.LastName}
           td(class='geocode #{contact.Geocode.Longitude} #{contact.Geocode.Latitude}') #{contact.Address.Street}
           td #{contact.Address.City} 
           td #{contact.Address.State}
           td #{contact.Address.Zip}
           td #{contact.Phone}
           td #{contact.Email}
+          td.icons
+            - var email = contact.ContactMethods.Email
+            if email == true
+                i(id='contactEmail#{contact._id}' style="color:#673ab7").material-icons email
+            else
+                i(id='contactEmail#{contact._id}' style="color:#9e9e9e").material-icons email
+                
+            - var phone = contact.ContactMethods.Phone
+            if phone == true
+                i(id='contactPhone#{contact._id}' style="color:#673ab7").material-icons phone
+            else
+                i(id='contactPhone#{contact._id}' style="color:#9e9e9e").material-icons phone
+                
+            - var mail = contact.ContactMethods.Mail
+            if mail == true
+                i(id='contactMail#{contact._id}' style="color:#673ab7").material-icons markunread_mailbox
+            else
+                i(id='contactMail#{contact._id}' style="color:#9e9e9e").material-icons markunread_mailbox
           td(class='delete')
             a(href="#")
                 i.fa.fa-trash.fa-lg(action='/contacts' method='delete' aria-hidden="true" id='#{contact._id}')
