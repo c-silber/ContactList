@@ -13,6 +13,8 @@ bcrypt.genSalt(10, function (err, salt) {
     });
 });
 
+message = 'none';
+
 passport.use(new localStrategy(
     {
         username: 'username',
@@ -21,7 +23,8 @@ passport.use(new localStrategy(
     function (user, pswd, done) {
         if (user !== username) {
             console.log("Username mismatch");
-            return done(null, false, {message: "Username is incorrect"});
+            message='Invalid Username';
+            return done(null, false, {message: "Invalid Password"});
         }
     
         bcrypt.compare(pswd, password, function (err, isMatch) {
@@ -29,9 +32,12 @@ passport.use(new localStrategy(
                 return done(err);
             }
             if (!isMatch) {
+                message='Invalid Password';
+                return done(null, false,  {message: "Invalid Password"});
                 console.log("Password mismatch");
             } else {
-                    console.log("Valid credentials");
+                    message = 'none';
+                    return done(null, isMatch);
             }
             done(null, isMatch);
         });
@@ -50,7 +56,9 @@ passport.deserializeUser(function (username, done){
              
 /* GET login page */
 router.get('/', function (req, res, next) {
-    res.render('login', {title: 'Contact Login'});
+    var errorMessage = message;
+    message = 'none';
+    res.render('login', {title: 'Contact Login', message: errorMessage});
 });
 
 /* POST login page */
@@ -58,7 +66,7 @@ router.post('/',
     passport.authenticate('local', 
                           { successRedirect: '/contacts',
                                    failureRedirect: '/login',
-                                   badRequestMessage : 'Missing username or password.',
+                                   badRequestMessage : 'Incorrect username or password.',
                                    failureFlash: true 
                           })
 );

@@ -1,6 +1,10 @@
 extends layout
 
 block content
+        if message != 'none'
+            script(type='text/javascript').
+                Materialize.toast("!{message}", 4000)
+        
         .row(style='margin-right:25%;margin-left:25%;')
             .card.medium
                 h3(align="center" style="padding-top:30px") Login

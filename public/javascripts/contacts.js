@@ -150,13 +150,21 @@ $(document).on('keyup', '#searchByAddress', function(){
   table = document.getElementById("contacts");
   tr = table.getElementsByTagName("tr");
 
+    console.log(filter);
+            var geocoder = new google.maps.Geocoder();
+            geocoder.geocode( { 'address': filter}, function(err, data) {    
+               if (err) {alert('Geocode was not successful for the following reason: ' + status);
+                        }
+                else {console.log("worked"); }
+            });
+    
   // Loop through all table rows, and hide those who don't match the search query
   for (i = 0; i < tr.length; i++) {
     address = tr[i].getElementsByTagName("td")[4];
     city = tr[i].getElementsByTagName("td")[5];
     state = tr[i].getElementsByTagName("td")[6];
     zip = tr[i].getElementsByTagName("td")[7];
-    if (address || city || state || zip) {
+    if (address || city || state || zip) {        
       if (address.innerHTML.toUpperCase().indexOf(filter) > -1 ||
          city.innerHTML.toUpperCase().indexOf(filter) > -1 ||
          state.innerHTML.toUpperCase().indexOf(filter) > -1 ||
